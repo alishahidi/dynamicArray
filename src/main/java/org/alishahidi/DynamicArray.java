@@ -57,7 +57,7 @@ public class DynamicArray {
                 }
                 array[size - 1] = null;
                 size--;
-                if (size <= (int) (capacity / 3)) {
+                if (size <= (capacity / 3)) {
                     shrink();
                 }
                 break;
@@ -75,21 +75,17 @@ public class DynamicArray {
     }
 
     public void grow() {
-        int newCapacity = (int) (capacity * 2);
+        int newCapacity = capacity * 2;
         Object[] newArray = new Object[newCapacity];
-        for(int i = 0; i < size; i++){
-            newArray[i] = array[i];
-        }
+        if (size >= 0) System.arraycopy(array, 0, newArray, 0, size);
         capacity = newCapacity;
         array = newArray;
      }
 
     public void shrink() {
-        int newCapacity = (int) (capacity / 2);
+        int newCapacity = capacity / 2;
         Object[] newArray = new Object[newCapacity];
-        for(int i = 0; i < size; i++){
-            newArray[i] = array[i];
-        }
+        if (size >= 0) System.arraycopy(array, 0, newArray, 0, size);
         capacity = newCapacity;
         array = newArray;
     }
